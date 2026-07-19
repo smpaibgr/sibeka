@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validasi SIBeKa</title>
+    <style>
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; }
+        iframe { width: 100%; height: 100%; border: none; }
+        #loading {
+            position: absolute; inset: 0; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; background: #f8fafc;
+            font-family: sans-serif; color: #64748b;
+        }
+    </style>
+</head>
+<body>
+    <div id="loading">Memuat Halaman Validasi...</div>
+    <iframe id="app-frame" allow="fullscreen"></iframe>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const validateId = urlParams.get('validate') || '';
+        
+        // URL Web App GAS Anda
+        const gasUrl = "https://script.google.com/macros/s/AKfycbwxZlSNrVViG-kVqrWFP7-dzDffByjHc8R6qJp9-6cf_vBoEu45HSdL43ZPa_YP0Mk/exec";
+        
+        const iframe = document.getElementById('app-frame');
+        iframe.onload = () => document.getElementById('loading').style.display = 'none';
+        iframe.src = gasUrl + "?authuser=0&validate=" + validateId;
+    </script>
+</body>
+</html>
