@@ -16,18 +16,22 @@
 </head>
 <body>
     <div id="loading">Memuat Halaman Validasi...</div>
+    
     <iframe id="app-frame" allow="fullscreen"></iframe>
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const validateId = urlParams.get('validate') || '';
         
-        // URL Web App GAS Anda
-        const gasUrl = "https://script.google.com/macros/s/AKfycbwxZlSNrVViG-kVqrWFP7-dzDffByjHc8R6qJp9-6cf_vBoEu45HSdL43ZPa_YP0Mk/exec";
+        // URL Web App GAS SIBeKa
+        const gasUrl = "https://script.google.com/macros/s/AKfycby3NImfZtfArR4qVOMGkxHEQ-nAOtxWvLrzN3TBVJmfu5I_gwt3-hRdDe2lH1wgMKvp/exec";
         
+        // Setup URL validasi (dengan authuser)
+        const fullUrl = gasUrl + "?authuser=0&validate=" + validateId;
+
         const iframe = document.getElementById('app-frame');
         iframe.onload = () => document.getElementById('loading').style.display = 'none';
-        iframe.src = gasUrl + "?authuser=0&validate=" + validateId;
+        iframe.src = fullUrl;
     </script>
 </body>
 </html>

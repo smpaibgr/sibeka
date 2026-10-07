@@ -24,7 +24,7 @@
             display: block;
         }
         
-        /* Tampilan Loading sementara (sebelum iframe termuat sepenuhnya) */
+        /* Tampilan Loading sementara */
         .loading-screen {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -33,7 +33,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            z-index: -1; /* Berada di belakang iframe */
+            z-index: -1;
         }
         
         .spinner {
@@ -60,11 +60,20 @@
         <div style="color: #64748b; font-size: 14px;">Memuat SIBeKa...</div>
     </div>
 
-    <!-- 
-      PENTING: Ganti URL di bagian src="" di bawah ini dengan URL Web App Google Script Anda.
-      URL harus berakhiran /exec (bukan /dev).
-    -->
-    <iframe src="https://script.google.com/macros/s/AKfycbwxZlSNrVViG-kVqrWFP7-dzDffByjHc8R6qJp9-6cf_vBoEu45HSdL43ZPa_YP0Mk/exec?v=2" title="SIBeKa App" allow="camera; microphone; fullscreen"></iframe>
+    <!-- Iframe yang URL-nya diset melalui JavaScript -->
+    <iframe id="sibekaFrame" title="SIBeKa App" allow="camera; microphone; fullscreen; geolocation"></iframe>
 
+    <script>
+        var gasUrl = "https://script.google.com/macros/s/AKfycby3NImfZtfArR4qVOMGkxHEQ-nAOtxWvLrzN3TBVJmfu5I_gwt3-hRdDe2lH1wgMKvp/exec";
+        
+        var params = window.location.search;
+        if (params) {
+            gasUrl += params + "&authuser=0";
+        } else {
+            gasUrl += "?authuser=0";
+        }
+        
+        document.getElementById('sibekaFrame').src = gasUrl;
+    </script>
 </body>
 </html>
